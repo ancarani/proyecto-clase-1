@@ -1,0 +1,45 @@
+import java.util.Arrays;
+
+public class PandemicGame {
+
+    // Enumeración CartasJugables
+    public enum CartasJugables {
+        BUENOS_AIRES("amarillo", "Los eventos son la mayor causa de infección."),
+        EL_CAIRO("negro", "Es esencial para generar curas."),
+        TOKIO("rojo", "Es esencial para centrar la enfermedad y buscar la cura."),
+        SAN_FRANCISCO("azul", "Hay menos brotes debido a su ubicación."),
+        PARIS("azul", "Es esencial para la inversión de cartas."),
+        SAO_PAULO("negro", "Los jugadores tratan enfermedades aquí."),
+        MOSCU("negro", "Es clave para intercambiar cartas y planear estrategias.");
+
+        private final String color;
+        private final String descripcion;
+
+        CartasJugables(String color, String descripcion) {
+            this.color = color;
+            this.descripcion = descripcion;
+        }
+
+        @Override
+        public String toString() {
+            return "La carta de " + this.name().replace("_", " ") + " está asociada con el color " + color + ". " + descripcion;
+        }
+    }
+
+    // filtramos todas las ciudades con los STREAMS
+    public static void main(String[] args) {
+        // Imprimir cartas usando Streams
+        Arrays.stream(CartasJugables.values())
+                .filter(carta -> carta.color.equals("amarillo")) // Filtrar cartas asociadas con el color dado
+                .forEach(System.out::println);               // Imprimir detalles
+        Arrays.stream(CartasJugables.values())
+                .filter(carta -> carta.color.equals("negro"))
+                .forEach(System.out::println);
+        Arrays.stream(CartasJugables.values())
+                .filter(carta -> carta.color.equals("rojo"))
+                .forEach(System.out::println);
+        Arrays.stream(CartasJugables.values())
+                .filter(carta -> carta.color.equals("azul"))
+                .forEach(System.out::println);
+    }
+}
